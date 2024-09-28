@@ -41,13 +41,9 @@ function SubNavbarTags() {
             type="create"
             descriptions="You can create tags to attach multiple and optionally you can add the tags to any group."
             trigger={
-              <Button
-                variant="link"
-                size="sm"
-                className="hover:bg-gray-900 group"
-              >
+              <p className="hover:bg-gray-900 group">
                 <Plus className="size-6 text-zinc-300 group-hover:text-zinc-100" />
-              </Button>
+              </p>
             }
           />
           <TagSelect />

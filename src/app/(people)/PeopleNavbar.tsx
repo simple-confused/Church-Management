@@ -12,33 +12,37 @@ const UserCreateDialog = dynamic(() => import("./UserCreateDialog"));
 function PeopleNavbar({ type }: { type: "create" | "edit" }) {
   const { peopleCount, role } = usePeopleContext();
   const pathName = usePathname();
+  const isAttendancePage = pathName.includes("/attendance");
+  const isPaymentsPage = pathName.includes("/payments");
+  const isMainPage = !isAttendancePage && !isPaymentsPage;
+
   return (
     <div className="mb-8 mt-4 flex items-center justify-between">
       {type === "create" && (
         <h1 className="text-lg">{peopleCount} people found</h1>
       )}
-      {type === "edit" &&
-        !pathName.includes("/attendance") &&
-        !pathName.includes("/payments") && (
-          <h1 className="text-lg text-zinc-600">People Infomation : </h1>
-        )}
-      {type === "edit" && pathName.includes("/attendance") && (
-        <h1 className="text-lg text-zinc-600">Attendance : </h1>
+
+      {type === "edit" && isMainPage && (
+        <h1 className="text-lg text-zinc-600">People Information :</h1>
       )}
-      {type === "edit" && pathName.includes("/payments") && (
-        <h1 className="text-lg text-zinc-600">Payments : </h1>
+      {type === "edit" && isAttendancePage && (
+        <h1 className="text-lg text-zinc-600">Attendance :</h1>
       )}
-      {role !== "people" && type === "edit" && (
+      {type === "edit" && isPaymentsPage && (
+        <h1 className="text-lg text-zinc-600">Payments :</h1>
+      )}
+
+      {role !== "people" && type === "edit" && isMainPage && (
         <Navigation
           pathName={pathName
-            .replaceAll("/attendance", "")
-            .replaceAll("/payments", "")}
+            .replace("/attendance", "")
+            .replace("/payments", "")}
         />
       )}
-      {type == "create" && <PeopleFilterOptions />}
-      {role === "owner" &&
-      !pathName.includes("/attendance") &&
-      !pathName.includes("/payments") ? (
+
+      {type === "create" && <PeopleFilterOptions />}
+
+      {role === "owner" && isMainPage ? (
         <UserCreateDialog type={type} />
       ) : (
         <div className="min-w-[100px]"></div>

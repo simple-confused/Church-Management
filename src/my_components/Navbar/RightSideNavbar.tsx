@@ -44,7 +44,7 @@ function RightSideNavbar({ ChurchInfo }: Props) {
               <Tooltip>
                 <TooltipTrigger>
                   <Avatar onClick={() => onClick(_id)} className="size-12">
-                    <AvatarImage src={`${imageUrl}/${image}`} />
+                    <AvatarImage src={`${image}`} />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                 </TooltipTrigger>

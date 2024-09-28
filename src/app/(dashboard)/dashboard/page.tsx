@@ -57,15 +57,22 @@ function DashboardPage() {
       <div className="flex items-center justify-between mb-8">
         {UserInfo?.role === "people" && (
           <div
-            className="cursor-pointer text-zinc-700 hover:text-black flex items-center"
+            className="cursor-pointer text-purple-600 hover:text-purple-800 flex items-center"
             onClick={onMsgButtonClick}
           >
-            <MessageSquare className="size-4 mr-2" />
-            <span className="font-semibold">{UnseenChatCount ?? 0}</span>
+            <MessageSquare className="size-4 mr-2 text-purple-500" />
+            <span className="font-semibold text-purple-600">
+              {UnseenChatCount ?? 0}
+            </span>
           </div>
         )}
         {UserInfo?.role === "admin" && (
-          <Button variant="outline" size="sm" onClick={onButtonClick}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onButtonClick}
+            className="text-pink-600 border-pink-600 hover:bg-pink-100"
+          >
             Change Church
           </Button>
         )}
@@ -76,40 +83,30 @@ function DashboardPage() {
         {UserInfo?.role !== "people" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Recent People Section */}
-            <div className="bg-white border border-gray-200 rounded-lg shadow-lg relative overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <h1 className="bg-gray-800 text-white text-center py-3 rounded-t-lg text-xl font-semibold tracking-wide">
+            <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white border border-transparent rounded-lg shadow-lg relative overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <h1 className="bg-purple-700 text-white text-center py-3 rounded-t-lg text-xl font-semibold tracking-wide">
                 People Added in the Last 7 Days
               </h1>
-              <div className="flex items-center justify-center py-6 text-3xl font-bold text-gray-700">
+              <div className="flex items-center justify-center py-6 text-3xl font-bold">
                 {recentJoined}
-              </div>
-
-              {/* Shiny hover effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white opacity-20 transform rotate-45 translate-x-full group-hover:translate-x-0 transition-all duration-700 ease-in-out"></div>
               </div>
             </div>
 
             {/* Donation Section */}
-            <div className="bg-white border border-gray-200 rounded-lg shadow-lg relative overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <h1 className="bg-gray-800 text-white text-center py-3 rounded-t-lg text-xl font-semibold tracking-wide">
+            <div className="bg-gradient-to-r from-green-400 to-blue-400 text-white border border-transparent rounded-lg shadow-lg relative overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <h1 className="bg-green-600 text-white text-center py-3 rounded-t-lg text-xl font-semibold tracking-wide">
                 People Donated in the Last 7 Days
               </h1>
-              <div className="flex items-center justify-center py-6 text-3xl font-bold text-gray-700">
+              <div className="flex items-center justify-center py-6 text-3xl font-bold">
                 {PaymentAmount || 0}
-              </div>
-
-              {/* Shiny hover effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white opacity-20 transform rotate-45 translate-x-full group-hover:translate-x-0 transition-all duration-700 ease-in-out"></div>
               </div>
             </div>
           </div>
         )}
 
         {/* Upcoming Events Section */}
-        <div className="bg-white w-full rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 ease-in-out">
-          <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">
+        <div className="bg-gradient-to-r from-yellow-300 to-red-400 w-full rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 ease-in-out">
+          <h1 className="text-2xl font-semibold text-center text-gray-900 mb-6">
             Upcoming Events
           </h1>
           <div className="overflow-x-auto">

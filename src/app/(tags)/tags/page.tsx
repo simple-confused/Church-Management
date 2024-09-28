@@ -62,7 +62,7 @@ function Page() {
       >
         {UserInfo?.role !== "people" && (
           <div className="flex flex-col w-full gap-y-4">
-            <h1>Group : </h1>
+            <h1 className="text-xl font-semibold mb-4">Groups</h1>
             {groupsInfo?.map(({ _id, name, SubItem }) => (
               <div className="flex w-full group" key={_id}>
                 <AccordionComponent
@@ -71,7 +71,7 @@ function Page() {
                   trigger={name}
                 />
                 {UserInfo?.role === "owner" && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between ml-4">
                     <TagsDialog
                       title="Update group"
                       type="update"
@@ -84,7 +84,7 @@ function Page() {
                                 setGroupIdForUpdate(_id);
                                 setDialogType("groups");
                               }}
-                              className="size-4 mr-4 text-zinc-500 hover:text-zinc-700 transition invisible group-hover:visible"
+                              className="size-4 mr-4 text-zinc-500 hover:text-zinc-700 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
                             />
                           }
                         >
@@ -94,13 +94,13 @@ function Page() {
                     ></TagsDialog>
                     <AlertDialogComponent
                       description={`Only the tag ${name} will be deleted not the people data.`}
-                      title={`Are you want to delete ${name} the tag ?`}
+                      title={`Are you sure you want to delete ${name}?`}
                       _id={_id}
                       onActionClick={deleteGroup}
                       trigger={
                         <TooltipComponent
                           hoverElement={
-                            <Trash className="size-4 mr-4 text-red-700 hover:text-red-600 transition invisible group-hover:visible" />
+                            <Trash className="size-4 mr-4 text-red-700 hover:text-red-600 transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
                           }
                         >
                           <h1>Delete Group</h1>
@@ -113,7 +113,9 @@ function Page() {
             ))}
           </div>
         )}
+
         <div className="flex flex-col w-full gap-y-4">
+          <h1 className="text-xl font-semibold mb-4">Tags</h1>
           {tagsInfo.map(({ _id, name }) => (
             <div
               key={_id}
@@ -123,43 +125,44 @@ function Page() {
                 {name}
               </Link>
               {UserInfo?.role === "owner" && (
-                <TagsDialog
-                  type="update"
-                  descriptions={`Update the tag ${name}`}
-                  trigger={
-                    <TooltipComponent
-                      hoverElement={
-                        <Pencil
-                          onClick={() => {
-                            setTagIdForUpdate(_id);
-                            setDialogType("tags");
-                            setGroupIdForUpdate("");
-                          }}
-                          className="size-4 mr-4 text-zinc-500 hover:text-zinc-700 transition invisible group-hover:visible"
-                        />
-                      }
-                    >
-                      <h1>Update Tag</h1>
-                    </TooltipComponent>
-                  }
-                ></TagsDialog>
-              )}
-              {UserInfo?.role === "owner" && (
-                <AlertDialogComponent
-                  description={`Only the tag ${name} will be deleted not the people data.`}
-                  title={`Are you want to delete ${name} the tag ?`}
-                  _id={_id}
-                  onActionClick={deleteTags}
-                  trigger={
-                    <TooltipComponent
-                      hoverElement={
-                        <Trash className="size-4 mr-4 text-red-700 hover:text-red-600 transition invisible group-hover:visible" />
-                      }
-                    >
-                      <h1>Delete Tag</h1>
-                    </TooltipComponent>
-                  }
-                />
+                <>
+                  <TagsDialog
+                    type="update"
+                    descriptions={`Update the tag ${name}`}
+                    trigger={
+                      <TooltipComponent
+                        hoverElement={
+                          <Pencil
+                            onClick={() => {
+                              setTagIdForUpdate(_id);
+                              setDialogType("tags");
+                              setGroupIdForUpdate("");
+                            }}
+                            className="size-4 mr-4 text-zinc-500 hover:text-zinc-700 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                          />
+                        }
+                      >
+                        <h1>Update Tag</h1>
+                      </TooltipComponent>
+                    }
+                  ></TagsDialog>
+
+                  <AlertDialogComponent
+                    description={`Only the tag ${name} will be deleted not the people data.`}
+                    title={`Are you sure you want to delete ${name}?`}
+                    _id={_id}
+                    onActionClick={deleteTags}
+                    trigger={
+                      <TooltipComponent
+                        hoverElement={
+                          <Trash className="size-4 mr-4 text-red-700 hover:text-red-600 transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                        }
+                      >
+                        <h1>Delete Tag</h1>
+                      </TooltipComponent>
+                    }
+                  />
+                </>
               )}
             </div>
           ))}

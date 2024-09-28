@@ -58,14 +58,10 @@ async function layout({ children }: { children: ReactNode }) {
             <EventDialog
               type="create"
               trigger={
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="flex items-center justify-between text-xl text-zinc-500 hover:text-zinc-700 hover:bg-slate-100"
-                >
+                <p className="flex items-center justify-between text-xl text-zinc-500 border-2 p-2 hover:text-zinc-700 hover:bg-slate-100">
                   <Plus className="size-6 mr-2" />
                   Add Event
-                </Button>
+                </p>
               }
             />
           )}

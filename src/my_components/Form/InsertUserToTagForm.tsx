@@ -96,7 +96,7 @@ function InsertUserToTagForm() {
                 className="flex items-center justify-between px-3 py-1 gap-x-3 border rounded-md"
               >
                 <Avatar>
-                  <AvatarImage src={`${imageUrl}/${image}`} />
+                  <AvatarImage src={`${image}`} />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <h1>{name}</h1>
